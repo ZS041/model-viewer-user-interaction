@@ -21,6 +21,9 @@ document.querySelector('model-viewer').addEventListener('progress', onProgress);
 const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
+
+
+
 document.addEventListener('keydown', (event) => {
   if (event.key === keySequence[keyIndex]) {
     keyIndex++;
@@ -29,6 +32,8 @@ document.addEventListener('keydown', (event) => {
   }
   if (keyIndex === keySequence.length) {
     modelViewer.dismissPoster();
+    var audio = new Audio('cat-purr-6164.mp3');
+    audio.play();
   }
 }
 );

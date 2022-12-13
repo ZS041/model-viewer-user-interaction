@@ -19,7 +19,7 @@ document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
 //User must press 'a' 'b' 'c' 'd' in sequence to dismiss poster
 const modelViewer = document.querySelector('model-viewer');
-const keySequence = ['a', 'b', 'c', 'd'];
+const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
 document.addEventListener('keydown', (event) => {
   if (event.key === keySequence[keyIndex]) {

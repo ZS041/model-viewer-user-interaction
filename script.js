@@ -22,31 +22,26 @@ const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
 var audio = new Audio('cat-purr-6164.mp3');
+let viewIndex = 0;
 
-
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keyup', (event) => {
   if (event.key === keySequence[keyIndex]) {
     keyIndex++;
   } else {
     keyIndex = 0;
   }
-  if (keyIndex === keySequence.length && modelViewer.hasAttribute('poster')) {
-   
+  if (keyIndex === keySequence.length) {
       modelViewer.dismissPoster();
-      audio.play();}
- 
-  else{
-    if( keyIndex === keySequence.length){
-      modelViewer.showPoster();
-      audio.pause;
-
+      audio.play();
+      viewIndex++;
+      keyIndex=0;
     }
+  else{
+    modelViewer.showPoster();
+    audio.pause();
+    viewIndex = 0;
+    
   }
-
- 
 }
-
-
 );
-
 

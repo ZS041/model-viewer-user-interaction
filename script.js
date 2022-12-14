@@ -21,7 +21,7 @@ document.querySelector('model-viewer').addEventListener('progress', onProgress);
 const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
-
+var audio = new Audio('cat-purr-6164.mp3');
 
 
 document.addEventListener('keydown', (event) => {
@@ -30,10 +30,23 @@ document.addEventListener('keydown', (event) => {
   } else {
     keyIndex = 0;
   }
-  if (keyIndex === keySequence.length) {
-    modelViewer.dismissPoster();
-    var audio = new Audio('cat-purr-6164.mp3');
-    audio.play();
+  if (keyIndex === keySequence.length && modelViewer.hasAttribute('poster')) {
+   
+      modelViewer.dismissPoster();
+      audio.play();}
+ 
+  else{
+    if( keyIndex === keySequence.length){
+      modelViewer.showPoster();
+      audio.pause;
+
+    }
   }
+
+ 
 }
+
+
 );
+
+

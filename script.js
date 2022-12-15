@@ -63,7 +63,7 @@ if ('ontouchstart' in document) {
 document.addEventListener('keydown', (event) => { // use keydown event instead of keyup
   if (event.key.length === 1) {
     // only check if key is a letter
-    if (keyIndex < keySequence.length && event.key === keySequence[keyIndex]) {
+    if (keyIndex < keySequence.length && event.key.toLowerCase() === keySequence[keyIndex]) {
       keyIndex++;
       if (keyIndex === keySequence.length) {
         if (isPosterShowing) {

@@ -19,10 +19,10 @@ const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
 var audio = new Audio('cat-purr-6164.mp3');
-let isPosterShowing = false;
+let isPosterShowing = true;
 
 if ('ontouchstart' in document) {
-  document.addEventListener('touchstart', function(evt) {
+  document.addEventListener('touchend', function(evt) {
     if (isPosterShowing) {
       modelViewer.dismissPoster();
       audio.play();
@@ -55,7 +55,8 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
           keyIndex = 0; // reset keyIndex when poster is shown
         }
       }
-    } else {
+    } else if (keyIndex === keySequence.length) {
+      // only reset keyIndex if the correct key sequence has been entered
       keyIndex = 0;
     }
   }

@@ -18,8 +18,8 @@ model-viewer {
 
 .logo{
   position: absolute;
-  bottom:0;
-  left: 0;
+  bottom:20px;
+  left: 30px;
   width: 100px;
   height: 100px;
 

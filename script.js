@@ -14,34 +14,49 @@ const onProgress = (event) => {
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
-
-
-
-//User must press 'a' 'b' 'c' 'd' in sequence to dismiss poster
+// User must press 'c' 'a' 't' in sequence to show or hide the poster, or touch if on mobile
 const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
 var audio = new Audio('cat-purr-6164.mp3');
-let viewIndex = 0;
+let isPosterShowing = false;
 
-document.addEventListener('keyup', (event) => {
-  if (event.key === keySequence[keyIndex]) {
-    keyIndex++;
-  } else {
-    keyIndex = 0;
-  }
-  if (keyIndex === keySequence.length) {
+if ('ontouchstart' in document) {
+  document.addEventListener('touchstart', function(evt) {
+    if (isPosterShowing) {
       modelViewer.dismissPoster();
       audio.play();
-      viewIndex++;
-      keyIndex=0;
+      isPosterShowing = false;
+      keyIndex = 0; // reset keyIndex when poster is dismissed
+    } else {
+      modelViewer.showPoster();
+      audio.pause();
+      isPosterShowing = true;
+      keyIndex = 0; // reset keyIndex when poster is shown
     }
-  else{
-    modelViewer.showPoster();
-    audio.pause();
-    viewIndex = 0;
-    
-  }
+  });
 }
-);
 
+document.addEventListener('keydown', (event) => { // use keydown event instead of keyup
+  if (event.key.length === 1) {
+    // only check if key is a letter
+    if (keyIndex < keySequence.length && event.key === keySequence[keyIndex]) {
+      keyIndex++;
+      if (keyIndex === keySequence.length) {
+        if (isPosterShowing) {
+          modelViewer.dismissPoster();
+          audio.play();
+          isPosterShowing = false;
+          keyIndex = 0; // reset keyIndex when poster is dismissed
+        } else {
+          modelViewer.showPoster();
+          audio.pause();
+          isPosterShowing = true;
+          keyIndex = 0; // reset keyIndex when poster is shown
+        }
+      }
+    } else {
+      keyIndex = 0;
+    }
+  }
+});

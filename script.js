@@ -22,20 +22,43 @@ var audio = new Audio('cat-purr-6164.mp3');
 let isPosterShowing = true;
 
 if ('ontouchstart' in document) {
+  let tapCount = 0; // variable to keep track of the number of taps
+  let tapTimer = null; // variable to store the timer
+
   document.addEventListener('touchend', function(evt) {
-    if (isPosterShowing) {
-      modelViewer.dismissPoster();
-      audio.play();
-      isPosterShowing = false;
-      keyIndex = 0; // reset keyIndex when poster is dismissed
-    } else {
-      modelViewer.showPoster();
-      audio.pause();
-      isPosterShowing = true;
-      keyIndex = 0; // reset keyIndex when poster is shown
+    tapCount++; // increment tapCount by 1 on each tap
+
+    // reset the timer
+    if (tapTimer) {
+      clearTimeout(tapTimer);
+    }
+
+    // set a new timer to reset tapCount after half a second
+    tapTimer = setTimeout(function() {
+      tapCount = 0;
+    }, 500);
+
+    if (tapCount === 2) { // check if tapCount is 2
+      // clear the timer
+      if (tapTimer) {
+        clearTimeout(tapTimer);
+      }
+
+      if (isPosterShowing) {
+        modelViewer.dismissPoster();
+        audio.play();
+        isPosterShowing = false;
+        keyIndex = 0; // reset keyIndex when poster is dismissed
+      } else {
+        modelViewer.showPoster();
+        audio.pause();
+        isPosterShowing = true;
+        keyIndex = 0; // reset keyIndex when poster is shown
+      }
     }
   });
 }
+
 
 document.addEventListener('keydown', (event) => { // use keydown event instead of keyup
   if (event.key.length === 1) {

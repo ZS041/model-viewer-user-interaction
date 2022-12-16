@@ -16,14 +16,7 @@ model-viewer {
   background-color: #D2D9E8;
 }
 
-.logo{
-  position: absolute;
-  bottom:20px;
-  left: 30px;
-  width: 100px;
-  height: 100px;
 
-}
 .progress-bar {
   display: block;
   width: 33%;

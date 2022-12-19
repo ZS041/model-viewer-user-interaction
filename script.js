@@ -100,21 +100,27 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
 
 
 document.addEventListener('keydown', (event) => { //use keydown event instead of keyup
+  if(!isPosterShowing){
   if(event.key === '1'){
     audio2.play();
   }
+}
 });
 
 
 document.addEventListener('keydown', (event) => {
+  if(!isPosterShowing){
   if(event.key === '2'){
     audio3.play();
   }
+  }
 });
 
 
 document.addEventListener('keydown', (event) => {
+  if(!isPosterShowing){
   if(event.key === '3'){
     audio4.play();
   }
+}
 });

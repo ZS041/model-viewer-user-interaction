@@ -18,7 +18,7 @@ document.querySelector('model-viewer').addEventListener('progress', onProgress);
 const modelViewer = document.querySelector('model-viewer');
 const keySequence = ['c', 'a', 't'];
 let keyIndex = 0;
-var audio = new Audio('cat-purr-6164.mp3');
+var audio1 = new Audio('Nyah1.mp3');
 let isPosterShowing = true;
 
 if ('ontouchstart' in document) {
@@ -46,12 +46,12 @@ if ('ontouchstart' in document) {
 
       if (isPosterShowing) {
         modelViewer.dismissPoster();
-        audio.play();
+        audio1.play();
         isPosterShowing = false;
         keyIndex = 0; // reset keyIndex when poster is dismissed
       } else {
         modelViewer.showPoster();
-        audio.pause();
+        audio1.pause();
         isPosterShowing = true;
         keyIndex = 0; // reset keyIndex when poster is shown
       }
@@ -68,12 +68,12 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
       if (keyIndex === keySequence.length) {
         if (isPosterShowing) {
           modelViewer.dismissPoster();
-          audio.play();
+          audio1.play();
           isPosterShowing = false;
           keyIndex = 0; // reset keyIndex when poster is dismissed
         } else {
           modelViewer.showPoster();
-          audio.pause();
+          audio1.pause();
           isPosterShowing = true;
           keyIndex = 0; // reset keyIndex when poster is shown
         }
@@ -82,5 +82,29 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
       // only reset keyIndex if the correct key sequence has been entered
       keyIndex = 0;
     }
+  }
+});
+
+var audio2 = new Audio('nyah2.mp3');
+
+document.addEventListener('keydown', (event) => {
+  if(event.key === '1'){
+    audio2.play();
+  }
+});
+
+var audio3 = new Audio('nyah3.mp3');
+
+document.addEventListener('keydown', (event) => {
+  if(event.key === '2'){
+    audio3.play();
+  }
+});
+
+var audio4 = new Audio('nyah4.mp3');
+
+document.addEventListener('keydown', (event) => {
+  if(event.key === '3'){
+    audio4.play();
   }
 });

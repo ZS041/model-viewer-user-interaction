@@ -1,3 +1,15 @@
+
+const modelViewer = document.querySelector('model-viewer');
+const keySequence = ['c', 'a', 't'];
+let keyIndex = 0;
+var audio1 = new Audio('Nyah1.mp3');
+let isPosterShowing = true;
+var audio4 = new Audio('nyah4.mp3');
+var audio3 = new Audio('nyah3.mp3');
+var audio2 = new Audio('nyah2.mp3');
+
+
+
 // Handles loading the events for <model-viewer>'s slotted progress bar
 const onProgress = (event) => {
   const progressBar = event.target.querySelector('.progress-bar');
@@ -15,11 +27,8 @@ const onProgress = (event) => {
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
 // User must press 'c' 'a' 't' in sequence to show or hide the poster, or touch if on mobile
-const modelViewer = document.querySelector('model-viewer');
-const keySequence = ['c', 'a', 't'];
-let keyIndex = 0;
-var audio1 = new Audio('Nyah1.mp3');
-let isPosterShowing = true;
+
+
 
 if ('ontouchstart' in document) {
   let tapCount = 0; // variable to keep track of the number of taps
@@ -68,8 +77,9 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
       if (keyIndex === keySequence.length) {
         if (isPosterShowing) {
           modelViewer.dismissPoster();
-          audio1.play();
+          
           isPosterShowing = false;
+          audio1.play();
           keyIndex = 0; // reset keyIndex when poster is dismissed
         } else {
           modelViewer.showPoster();
@@ -85,15 +95,16 @@ document.addEventListener('keydown', (event) => { // use keydown event instead o
   }
 });
 
-var audio2 = new Audio('nyah2.mp3');
 
-document.addEventListener('keydown', (event) => {
+// add event listeners for each sound trigger
+
+
+document.addEventListener('keydown', (event) => { //use keydown event instead of keyup
   if(event.key === '1'){
     audio2.play();
   }
 });
 
-var audio3 = new Audio('nyah3.mp3');
 
 document.addEventListener('keydown', (event) => {
   if(event.key === '2'){
@@ -101,7 +112,6 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-var audio4 = new Audio('nyah4.mp3');
 
 document.addEventListener('keydown', (event) => {
   if(event.key === '3'){
